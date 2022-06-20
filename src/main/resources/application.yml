@@ -4,10 +4,10 @@ spring:
       - h2
 #      - postgre
 #      - security
-  mvc:
-    hiddenmethod:
-        filter:
-          enabled: true
+mvc:
+  hiddenmethod:
+      filter:
+        enabled: true
 
 
   main:

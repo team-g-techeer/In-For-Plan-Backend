@@ -35,6 +35,7 @@ public class ProjectService {
     private final Members_ProjectMapper members_projectMapper;
     @Autowired
     private Members_Project members_project;
+
     @Transactional
     public Project save(ProjectRequestDto dto, String email) {
         Users user = userRepository.findByEmail(email).orElseThrow(() ->
@@ -48,10 +49,10 @@ public class ProjectService {
     }
 
     @Transactional
-    public void deleteProject(Long id,String email) {
-        Users user = userRepository.findByEmail(email).orElseThrow(()->
+    public void deleteProject(Long id, String email) {
+        Users user = userRepository.findByEmail(email).orElseThrow(() ->
                 new IllegalArgumentException("해당 유저가 없습니다."));
-        Project project = projectRepository.findById(id).orElseThrow(()->
+        Project project = projectRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("해당 프로젝트가 없습니다."));
         members_project = members_projectRepository.findMembers_ProjectByProject(project);
         System.out.println(members_project);
@@ -60,37 +61,32 @@ public class ProjectService {
     }
 
     @Transactional
-    public Long updateProject(Long id,String email,ProjectRequestDto dto) {
-        Users user = userRepository.findByEmail(email).orElseThrow(()->
+    public Long updateProject(Long id, String email, ProjectRequestDto dto) {
+        Users user = userRepository.findByEmail(email).orElseThrow(() ->
                 new IllegalArgumentException("해당 유저가 없습니다."));
-        Project project = projectRepository.findById(id).orElseThrow(()->
+        Project project = projectRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("해당 프로젝트가 없습니다."));
 
-        project.update(dto.getProject_title(),dto.getUrl(),dto.getMeet_date());
-        members_project.update(user,project);
+        project.update(dto.getProject_title(), dto.getUrl(), dto.getMeet_date());
+        members_project.update(user, project);
         return id;
-
-
-
     }
 
     @Transactional
-    public List<Project> findall(String email)
-    {
-        Users user = userRepository.findByEmail(email).orElseThrow(()->
+    public List<Project> findAll(String email) {
+        Users user = userRepository.findByEmail(email).orElseThrow(() ->
                 new IllegalArgumentException("해당 유저가 없습니다."));
-        System.out.println("-----------------------"+user.getEmail());
+        System.out.println("-----------------------" + user.getEmail());
         List<Members_Project> memberlist = members_projectRepository.findMembers_ProjectByUsers(user);
         List<Project> projectlist = new ArrayList<Project>();
-        for(int i=0;i<memberlist.size();i++)
-        {
+        for (int i = 0; i < memberlist.size(); i++) {
             projectlist.add(memberlist.get(i).getProject());
         }
         return projectlist;
     }
 
     @Transactional
-    public Optional<Project> findbyid(Long id) {
+    public Optional<Project> findById(Long id) {
         try {
             Optional<Project> result = projectRepository.findById(id);
             if (result.isPresent()) {

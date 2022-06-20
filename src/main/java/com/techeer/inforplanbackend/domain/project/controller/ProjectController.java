@@ -61,16 +61,16 @@ public class ProjectController {
     public List<Project> findAll() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String email = ((User) auth.getPrincipal()).getUsername();
-        List<Project> projectlist = projectService.findall(email);
+        List<Project> projectlist = projectService.findAll(email);
         System.out.println(email + "123124124124124124124124");
         System.out.println(projectlist);
         return projectlist;
     }
 
-    @GetMapping("/projects/{project_id}")
+    @GetMapping("/project/{project_id}")
     public Optional<Project> finyById(@PathVariable("project_id") Long id) {
 
-        Optional<Project> project = projectService.findbyid(id);
+        Optional<Project> project = projectService.findById(id);
         return project;
     }
 
