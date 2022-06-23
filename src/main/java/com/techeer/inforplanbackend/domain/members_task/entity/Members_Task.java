@@ -1,8 +1,7 @@
-package com.techeer.inforplanbackend.domain.members_project.entity;
+package com.techeer.inforplanbackend.domain.members_task.entity;
 
-import com.techeer.inforplanbackend.domain.project.entity.Project;
+import com.techeer.inforplanbackend.domain.task.entity.Task;
 import com.techeer.inforplanbackend.domain.user.domain.entity.Users;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,9 +10,9 @@ import javax.persistence.*;
 
 @Getter
 @Entity
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @org.springframework.stereotype.Component
-public class Members_Project {
+public class Members_Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,21 +23,18 @@ public class Members_Project {
     private Users users;
 
     @ManyToOne
-    @JoinColumn(name = "project_id")
-    private Project project;
-
+    @JoinColumn(name = "task_id")
+    private Task task;
 
     @Builder
-    public Members_Project(Long id, Users users, Project project) {
+    public Members_Task(Long id, Users users, Task task) {
         this.id = id;
         this.users = users;
-        this.project = project;
+        this.task = task;
     }
 
-    public void update(Users users, Project project) {
+    public void update(Users users, Task task) {
         this.users = users;
-        this.project = project;
+        this.task = task;
     }
-
-
 }

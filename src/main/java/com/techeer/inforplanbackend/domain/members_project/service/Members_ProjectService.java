@@ -7,7 +7,5 @@ import org.springframework.stereotype.Service;
 @Service
 public class Members_ProjectService {
 
-    private Members_ProjectRepository MP_repository;
-    private Members_ProjectMapper mapper;
 
 }
