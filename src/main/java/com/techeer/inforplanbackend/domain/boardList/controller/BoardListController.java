@@ -1,8 +1,8 @@
 package com.techeer.inforplanbackend.domain.boardList.controller;
 
-import com.techeer.inforplanbackend.domain.boardList.dto.Mapper.BoardListMapper;
-import com.techeer.inforplanbackend.domain.boardList.dto.Request.BoardListRequestDto;
-import com.techeer.inforplanbackend.domain.boardList.dto.Response.BoardListResponseDto;
+import com.techeer.inforplanbackend.domain.boardList.dto.mapper.BoardListMapper;
+import com.techeer.inforplanbackend.domain.boardList.dto.request.BoardListRequestDto;
+import com.techeer.inforplanbackend.domain.boardList.dto.response.BoardListResponseDto;
 import com.techeer.inforplanbackend.domain.boardList.entity.BoardList;
 import com.techeer.inforplanbackend.domain.boardList.service.BoardListService;
 import lombok.AllArgsConstructor;
@@ -27,16 +27,13 @@ public class BoardListController {
     }
 
     @GetMapping("/boardLists")
-    public List<BoardList> findall() {
-        List<BoardList> all = boardListService.findall();
-        return all;
+    public List<BoardList> findAll() {
+        return boardListService.findAll();
     }
 
     @GetMapping("/boardLists/{boardList_id}")
-    public Optional<BoardList> findbyid(@PathVariable("boardList_id") Long id) {
-
-        Optional<BoardList> boardList = boardListService.findbyid(id);
-        return boardList;
+    public Optional<BoardList> findById(@PathVariable("boardList_id") Long id) {
+        return boardListService.findById(id);
     }
 
     @DeleteMapping("/boardLists/{boardList-id}")

@@ -1,19 +1,14 @@
 package com.techeer.inforplanbackend.domain.boardList.entity;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.techeer.inforplanbackend.domain.boardList.dto.Request.BoardListRequestDto;
 import com.techeer.inforplanbackend.domain.project.entity.Project;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 @JsonAutoDetect
 public class BoardList extends  BaseTimeEntity{
 
@@ -25,13 +20,14 @@ public class BoardList extends  BaseTimeEntity{
     @Column(name = "boardList_title", nullable = false)
     private String boardList_title;
 
-//    @ManyToOne
-//    @JoinColumn(name = "project_id")
-//    private Project project;
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    private Project project;
 
     @Builder
-    public BoardList(String boardList_title){
+    public BoardList(String boardList_title, Project project){
         this.boardList_title = boardList_title;
+        this.project = project;
     }
 
     public void update(String boardList_title){

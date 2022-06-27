@@ -1,4 +1,4 @@
-package com.techeer.inforplanbackend.domain.project.dto.Response;
+package com.techeer.inforplanbackend.domain.project.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,11 +9,11 @@ import java.sql.Date;
 @Data
 @Builder
 @AllArgsConstructor
-public class ProjectResponseDto {
+public class ProjectRequestDto {
 
-    public Long id;
     public String project_title;
     public String url;
     public Date meet_date;
+
 
 }
