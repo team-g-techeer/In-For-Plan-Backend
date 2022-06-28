@@ -7,7 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-@Order(200)
+@Order(value = 1)
 @AllArgsConstructor
 @EnableWebSecurity    //Spring Security 설정 활성화
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -28,7 +28,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .logoutSuccessUrl("/")
                 .and()
                     .oauth2Login()
+                     //   .loginPage("/api/v1/hello")
                         .userInfoEndpoint()    //로그인 성공 후 가져올 때의 설정들
-                            .userService(customOAuth2UserService);   //리소스 서버에서 사용자 정보를 가져온 상태에서 추가로 진행하고자 하는 기능 명시
+                        .userService(customOAuth2UserService);   //리소스 서버에서 사용자 정보를 가져온 상태에서 추가로 진행하고자 하는 기능 명시
     }
 }

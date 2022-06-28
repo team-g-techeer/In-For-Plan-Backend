@@ -15,4 +15,9 @@ public class IndexController {
     public String index() {
         return "index";
     }
+
+    @GetMapping("/api/v1/hello")
+    public String hello() {
+        return "hello";
+    }
 }
