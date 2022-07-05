@@ -5,6 +5,11 @@ spring:
 #      - postgre
       - oauth
 #      - security
+  mvc:
+    hiddenmethod:
+        filter:
+          enabled: true
+
 
   main:
     allow-circular-references: true
