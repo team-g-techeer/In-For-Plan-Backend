@@ -1,9 +1,9 @@
 spring:
-  profiles:
-    include:
-      - h2
+  datasource:
+#    include:
+#      - h2
 #      - postgre
-      - oauth
+#      - oauth
 #      - security
   mvc:
     hiddenmethod:
