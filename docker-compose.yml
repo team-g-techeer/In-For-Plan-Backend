@@ -1,0 +1,24 @@
+version: '3'
+services:
+  postgres-db:
+    image: postgres
+    restart: always
+    container_name: postgres # 컨테이너 이름 설정
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+#    volumes:
+#      - ${POSTGRES_HOME_DIR}/data/:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+
+  spring:
+    container_name: spring_boot
+    image: inforplan:lastest
+    ports:
+      - "8080:8080"
+    build : .
+    depends_on:
+      - postgres-db
+#    volumes:   프론트랑 합친 후에 볼륨 설정 예정
