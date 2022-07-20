@@ -71,7 +71,7 @@ public class Task {
         this.list_id = list_id;     //drag and drop으로 인한 list 값 변경
         this.description = description;
         this.start_date = start_date;
-        this.created_at = LocalDate.now();
+        //this.created_at = LocalDate.now();
         this.end_date = end_date;
         this.updated_at = LocalDate.now();
         this.file_url = file_url;
