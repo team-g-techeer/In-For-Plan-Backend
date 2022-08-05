@@ -7,7 +7,6 @@ import com.techeer.inforplanbackend.domain.user.dto.request.UserCreateRequestDto
 import com.techeer.inforplanbackend.domain.user.dto.response.JwtResponse;
 import com.techeer.inforplanbackend.domain.user.dto.response.UserResponseDto;
 import com.techeer.inforplanbackend.domain.user.service.UserService;
-import com.techeer.inforplanbackend.global.security.JwtTokenUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +22,7 @@ public class UserController {
 
     public final UserMapper userMapper;
 
-    private final JwtTokenUtil jwtTokenUtil;
+    //private final JwtTokenUtil jwtTokenUtil;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -39,13 +38,5 @@ public class UserController {
 
         return userService.findById(id);
 
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
-        final Users user = userService.authenticateByEmailAndPassword
-                (authenticationRequest.getEmail(), authenticationRequest.getPassword());
-        final String token = jwtTokenUtil.generateToken(user.getEmail());
-        return ResponseEntity.ok(new JwtResponse(token));
     }
 }

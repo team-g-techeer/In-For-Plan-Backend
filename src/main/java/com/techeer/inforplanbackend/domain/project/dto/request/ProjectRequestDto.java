@@ -2,11 +2,9 @@ package com.techeer.inforplanbackend.domain.project.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 
 import java.sql.Date;
 
-@Data
 @Builder
 @AllArgsConstructor
 public class ProjectRequestDto {

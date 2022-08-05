@@ -12,7 +12,6 @@ import javax.persistence.*;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@org.springframework.stereotype.Component
 public class Members_Project {
 
     @Id
@@ -34,11 +33,5 @@ public class Members_Project {
         this.users = users;
         this.project = project;
     }
-
-    public void update(Users users, Project project) {
-        this.users = users;
-        this.project = project;
-    }
-
 
 }
