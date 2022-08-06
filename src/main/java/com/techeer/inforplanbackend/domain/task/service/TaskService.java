@@ -16,8 +16,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.Year;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 @Service
 @AllArgsConstructor
@@ -80,5 +84,39 @@ public class TaskService {
 
         members_task.update(user, task);
     }
+
+    @Transactional
+    public ZonedDateTime KoreaToAmericaTime(String KoreaTimeStart, String KoreaTimeEnd) //time yyyy,mm,dd,hh,mm , Korea Timezone to America TimeZone(LA), korea time is 16 hours ahead of LA
+    {
+        StringTokenizer st = new StringTokenizer(KoreaTimeStart, ",");
+        int year = Integer.parseInt(st.nextToken());
+        int month = Integer.parseInt(st.nextToken());
+        int day = Integer.parseInt(st.nextToken());
+        int hour = Integer.parseInt(st.nextToken());
+        int min = Integer.parseInt(st.nextToken());
+
+        ZonedDateTime startTime = Year.of(year).atMonth(month).atDay(day).atTime(hour, min).atZone(ZoneId.of("Asia/Seoul"));
+        System.out.println(startTime);
+
+
+        ZonedDateTime AmericaStartTime = startTime.withZoneSameInstant(ZoneId.of("America/Los_Angeles"));
+
+        return AmericaStartTime;
+    }
+
+    public ZonedDateTime AmericaToKorea(String AmericaTimeStart, String AmericaTimeEnd) {
+        StringTokenizer st = new StringTokenizer(AmericaTimeStart, ",");
+        int year = Integer.parseInt(st.nextToken());
+        int month = Integer.parseInt(st.nextToken());
+        int day = Integer.parseInt(st.nextToken());
+        int hour = Integer.parseInt(st.nextToken());
+        int min = Integer.parseInt(st.nextToken());
+
+        ZonedDateTime startTime = Year.of(year).atMonth(month).atDay(day).atTime(hour, min).atZone(ZoneId.of("America/Los_Angeles"));
+        ZonedDateTime koreaStartTime = startTime.withZoneSameInstant(ZoneId.of("Asia/Seoul"));
+
+        return koreaStartTime;
+    }
+
 
 }
