@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Security;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @RestController
@@ -59,4 +60,16 @@ public class TaskController {
         taskService.update(task_id, taskRequestDto, email);
         return taskService.findById(task_id);
     }
+    @GetMapping("/tasks/time_trans")
+    public ZonedDateTime time_transfer(String time, String nation)
+    {
+        if(nation.equals("korea"))
+        {
+             return taskService.KoreaToAmericaTime(time);
+        }else
+        {
+            return taskService.AmericaToKorea(time);
+        }
+    }
+
 }

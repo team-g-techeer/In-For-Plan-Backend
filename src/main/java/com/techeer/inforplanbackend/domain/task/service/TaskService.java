@@ -86,7 +86,7 @@ public class TaskService {
     }
 
     @Transactional
-    public ZonedDateTime KoreaToAmericaTime(String KoreaTimeStart, String KoreaTimeEnd) //time yyyy,mm,dd,hh,mm , Korea Timezone to America TimeZone(LA), korea time is 16 hours ahead of LA
+    public ZonedDateTime KoreaToAmericaTime(String KoreaTimeStart) //time yyyy,mm,dd,hh,mm , Korea Timezone to America TimeZone(LA), korea time is 16 hours ahead of LA
     {
         StringTokenizer st = new StringTokenizer(KoreaTimeStart, ",");
         int year = Integer.parseInt(st.nextToken());
@@ -104,7 +104,7 @@ public class TaskService {
         return AmericaStartTime;
     }
 
-    public ZonedDateTime AmericaToKorea(String AmericaTimeStart, String AmericaTimeEnd) {
+    public ZonedDateTime AmericaToKorea(String AmericaTimeStart) {
         StringTokenizer st = new StringTokenizer(AmericaTimeStart, ",");
         int year = Integer.parseInt(st.nextToken());
         int month = Integer.parseInt(st.nextToken());
