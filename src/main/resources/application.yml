@@ -2,7 +2,7 @@ spring:
   datasource:
 #    include:
 #      - h2
-#      - postgre
+      - postgre
 #      - oauth
 #      - security
   mvc:
