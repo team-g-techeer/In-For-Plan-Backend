@@ -24,38 +24,38 @@ public class TaskController {
     public final TaskMapper taskMapper;
 
     @PostMapping("/tasks")
-    public TaskResponseDto create(@RequestBody TaskRequestDto taskRequestDto) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String email = ((User) auth.getPrincipal()).getUsername();
-        Task task = taskService.create(taskRequestDto, email);
-        return taskMapper.fromEntity(task);
-    }
+            public TaskResponseDto create(@RequestBody TaskRequestDto taskRequestDto) {
+                Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+                String email = ((User) auth.getPrincipal()).getUsername();
+                Task task = taskService.create(taskRequestDto, email);
+                return taskMapper.fromEntity(task);
+            }
 
-    @GetMapping
-    public List<Task> all() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String email = ((User) auth.getPrincipal()).getUsername();
-        List<Task> task = taskService.all(email);
-        return task;
-    }
+            @GetMapping
+            public List<Task> all() {
+                Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+                String email = ((User) auth.getPrincipal()).getUsername();
+                List<Task> task = taskService.all(email);
+                return task;
+            }
 
-    @DeleteMapping("/tasks/{task_id}")
-    public String delete(@PathVariable Long task_id) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String email = ((User) auth.getPrincipal()).getUsername();
-        taskService.deleteTask(task_id, email);
-        return "삭제된 task의 id : " + task_id;
-    }
+            @DeleteMapping("/tasks/{task_id}")
+            public String delete(@PathVariable Long task_id) {
+                Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+                String email = ((User) auth.getPrincipal()).getUsername();
+                taskService.deleteTask(task_id, email);
+                return "삭제된 task의 id : " + task_id;
+            }
 
-    @GetMapping("/tasks/{task_id}")
-    public TaskResponseDto find(@PathVariable Long task_id) {
-        return taskService.findById(task_id);
-    }
+            @GetMapping("/tasks/{task_id}")
+            public TaskResponseDto find(@PathVariable Long task_id) {
+                return taskService.findById(task_id);
+            }
 
-    @PutMapping("/tasks/{task_id}")
-    public TaskResponseDto update(@PathVariable Long task_id, @RequestBody TaskRequestDto taskRequestDto) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String email = ((User) auth.getPrincipal()).getUsername();
+            @PutMapping("/tasks/{task_id}")
+            public TaskResponseDto update(@PathVariable Long task_id, @RequestBody TaskRequestDto taskRequestDto) {
+                Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+                String email = ((User) auth.getPrincipal()).getUsername();
         taskService.update(task_id, taskRequestDto, email);
         return taskService.findById(task_id);
     }
