@@ -28,7 +28,7 @@ spring:
        registration:
           google:
             client-id: 457190401330-d0kdd9mkfr8gptk868o0a89oorlvrnre.apps.googleusercontent.com
-            client-secret: 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
+            
             scope:
               - profile
               - email
@@ -47,6 +47,6 @@ sns:
     url: https://accounts.google.com/o/oauth2/v2/auth
     client:
       id: 457190401330-d0kdd9mkfr8gptk868o0a89oorlvrnre.apps.googleusercontent.com
-      secret: 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
+      
       callback:
         url: http://localhost:8080/auth/google/callback
